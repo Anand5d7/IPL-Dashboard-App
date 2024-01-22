@@ -1,0 +1,126 @@
+/* Write your CSS here */
+
+.latest-match-container {
+  display: flex;
+  flex-direction: column;
+}
+.side-head {
+  color: #ffffff;
+  font-family: 'Bree Serif';
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+.latest-item-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #1e293b;
+  border-radius: 10px;
+  border-width: 0px;
+}
+.first-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 20px;
+}
+.latest-match {
+  display: flex;
+  flex-direction: column;
+}
+.competing-team {
+  color: #ffffff;
+  font-size: 26px;
+  font-family: 'Bree Serif';
+  font-weight: bold;
+}
+.date {
+  color: #ffffff;
+  font-size: 23px;
+  font-family: 'Bree Serif';
+  font-weight: 500;
+}
+.venue {
+  color: #ffffff;
+  font-size: 16px;
+  font-family: 'Bree Serif';
+  font-weight: 500;
+}
+.result {
+  color: #ffffff;
+  font-size: 16px;
+  font-family: 'Bree Serif';
+  font-weight: 500;
+}
+.latest-match-logo {
+  height: 120px;
+  width: 120px;
+}
+
+.line {
+  border: 2px solid #475569;
+  width: 100%;
+}
+.second-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+.label {
+  color: #ffffff;
+  font-size: 23px;
+  font-family: 'Bree Serif';
+  font-weight: bold;
+}
+.value {
+  color: #ffffff;
+  font-size: 18px;
+  font-family: 'Bree Serif';
+  font-weight: 500;
+}
+
+@media screen and (min-width: 768px) {
+  .latest-item-container {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+  }
+  .second-container {
+    text-align: right;
+  }
+  .line {
+    display: none;
+  }
+  .label {
+    margin: 0px;
+    text-align: right;
+    font-size: 10px;
+    font-weight: 500;
+  }
+  .value {
+    font-size: 10px;
+  }
+  .competing-team {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0px;
+    padding-bottom: 20px;
+  }
+  .date {
+    font-size: 15px;
+    margin: 0px;
+    padding-bottom: 15px;
+  }
+  .venue {
+    font-size: 13px;
+    margin: 0px;
+    padding-bottom: 10px;
+  }
+  .result {
+    font-size: 13px;
+    margin: 0px;
+  }
+  .latest-match-logo {
+    margin-left: 30px;
+  }
+}
