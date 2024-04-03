@@ -4,7 +4,7 @@ import {Link, withRouter} from 'react-router-dom'
 import Loader from 'react-loader-spinner'
 import LatestMatch from '../LatestMatch'
 import MatchCard from '../MatchCard'
-
+import PieChart from '../PieChart'
 import './index.css'
 
 const teamMatchesApiUrl = 'https://apis.ccbp.in/ipl/'
@@ -35,16 +35,26 @@ class TeamMatches extends Component {
     const {params} = match
     const {id} = params
 
-    const response = await fetch(`${teamMatchesApiUrl}${id}`)
-    const fetchedData = await response.json()
-    const formattedData = {
-      teamBannerUrl: fetchedData.team_banner_url,
-      latestMatch: this.getFormattedData(fetchedData.latest_match_details),
-      recentMatches: fetchedData.recent_matches.map(eachMatch =>
-        this.getFormattedData(eachMatch),
-      ),
+    try {
+      const response = await fetch(`${teamMatchesApiUrl}${id}`)
+      const fetchedData = await response.json()
+      const formattedData = {
+        teamBannerUrl: fetchedData.team_banner_url,
+        latestMatch: this.getFormattedData(fetchedData.latest_match_details),
+        recentMatches: fetchedData.recent_matches.map(eachMatch =>
+          this.getFormattedData(eachMatch),
+        ),
+        pieChartData: [
+          {name: 'Won', value: fetchedData.won},
+          {name: 'Lost', value: fetchedData.lost},
+          {name: 'Draw', value: fetchedData.draw},
+        ],
+      }
+      this.setState({teamMatchesData: formattedData, isLoading: false})
+    } catch (error) {
+      console.error('Error fetching team matches:', error)
+      this.setState({isLoading: false})
     }
-    this.setState({teamMatchesData: formattedData, isLoading: false})
   }
 
   renderRecentMatchesList = () => {
@@ -62,13 +72,14 @@ class TeamMatches extends Component {
 
   renderTeamMatches = () => {
     const {teamMatchesData} = this.state
-    const {teamBannerUrl, latestMatch} = teamMatchesData
+    const {teamBannerUrl, latestMatch, pieChartData} = teamMatchesData
 
     return (
       <div className="responsive-container">
         <img src={teamBannerUrl} alt="team banner" className="team-banner" />
         <LatestMatch latestMatchData={latestMatch} />
         {this.renderRecentMatchesList()}
+        <PieChart data={pieChartData} />
       </div>
     )
   }
