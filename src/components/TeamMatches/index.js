@@ -1,5 +1,6 @@
 // Write your code here
 import {Component} from 'react'
+import {Link, withRouter} from 'react-router-dom'
 import Loader from 'react-loader-spinner'
 import LatestMatch from '../LatestMatch'
 import MatchCard from '../MatchCard'
@@ -114,10 +115,15 @@ class TeamMatches extends Component {
       <div className="matches-container">
         <div className={className}>
           {isLoading ? this.renderLoader() : this.renderTeamMatches()}
+          <Link to="/" className="btn-link">
+            <button type="button" className="back-btn">
+              Back
+            </button>
+          </Link>
         </div>
       </div>
     )
   }
 }
 
-export default TeamMatches
+export default withRouter(TeamMatches)
