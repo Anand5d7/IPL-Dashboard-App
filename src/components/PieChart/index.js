@@ -14,12 +14,16 @@ const COLORS = ['#00c49F', '#FF8042', '#FFBB28']
 const PieChart = props => {
   const {data} = props
   return (
-    <div className="pie-chart-bg-container mt-2 d-flex justify-content-center">
+    <div className="pie-chart-bg-container">
       <PieChartComponent width={400} height={350}>
         <Pie
           data={data}
-          innerRadius={0}
+          cx={100}
+          cy={100}
+          innerRadius={60}
           outerRadius={100}
+          fill="#8884d8"
+          paddingAngle={5}
           dataKey="value"
           label
         >
